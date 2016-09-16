@@ -46,12 +46,12 @@ class UserResource {
 
    
     @GET
-    @Path('/find')
+    @Path('/all')
     @Produces(MediaType.APPLICATION_JSON)
-    User findUser(@QueryParam("q") String q) {
+    List<User> findUser() {
         Query<User> query = datastore.createQuery(User)
 
-        User u = query.filter('firstName', q).get()
+        List<User> u = query.findAll()
 
         return u
     }
